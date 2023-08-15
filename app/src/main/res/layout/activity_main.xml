@@ -8,7 +8,7 @@
     tools:context=".ui.MainActivity">
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animationView"
+        android:id="@+id/animationView_login"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
