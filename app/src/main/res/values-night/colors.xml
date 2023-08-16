@@ -5,6 +5,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="primary">#00A6A6</color>
+    <color name="icon">#6000A6A6</color>
     <color name="secondary">#A6B5C9</color>
     <color name="tertiary">#D6E2ED</color>
     <color name="quinary">#444548</color>

@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:text="Login"
         android:textColor="@color/title"
-        android:textSize="@dimen/_24ssp"
+        android:textSize="@dimen/_22ssp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,7 +74,7 @@
         android:id="@+id/textField2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_16sdp"
         android:hint="Password"
         android:textColorHint="@color/hint"
         app:endIconMode="password_toggle"
@@ -93,32 +93,22 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/tv_login_forgot_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_4sdp"
-        android:text="@string/forgot_password"
-        android:textColor="@color/title"
-        android:textSize="@dimen/_12ssp"
-        app:layout_constraintStart_toStartOf="@+id/textField2"
-        app:layout_constraintTop_toBottomOf="@+id/textField2" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_50sdp"
-        android:layout_marginTop="@dimen/_30sdp"
         android:backgroundTint="@color/primary"
         android:text="Login"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="@dimen/_16ssp"
         android:textStyle="bold"
+        android:layout_marginTop="@dimen/_30sdp"
         app:cornerRadius="@dimen/_6sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_login_forgot_password" />
+        app:layout_constraintTop_toBottomOf="@+id/textField2" />
 
     <TextView
         android:id="@+id/tv_not_have_account"

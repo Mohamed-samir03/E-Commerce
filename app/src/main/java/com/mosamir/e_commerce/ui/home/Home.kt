@@ -1,4 +1,4 @@
-package com.mosamir.e_commerce.ui.auth
+package com.mosamir.e_commerce.ui.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,11 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.mosamir.e_commerce.databinding.FragmentResetPasswordBinding
+import com.mosamir.e_commerce.databinding.FragmentHomeBinding
 
-class ResetPassword : Fragment() {
 
-    private var _binding: FragmentResetPasswordBinding? = null
+class Home : Fragment() {
+
+    private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var mNavController: NavController
 
@@ -25,7 +26,8 @@ class ResetPassword : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentResetPasswordBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
 
 
         return binding.root
@@ -35,6 +37,5 @@ class ResetPassword : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 
 }

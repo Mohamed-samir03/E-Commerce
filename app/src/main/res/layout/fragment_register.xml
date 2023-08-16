@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:text="Sign up"
         android:textColor="@color/title"
-        android:textSize="@dimen/_24ssp"
+        android:textSize="@dimen/_22ssp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

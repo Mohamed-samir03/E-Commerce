@@ -12,10 +12,9 @@
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_login_to_register"
-            app:destination="@id/register" />
-        <action
-            android:id="@+id/action_login_to_resetPassword"
-            app:destination="@id/resetPassword" />
+            app:destination="@id/register"
+            app:popUpTo="@id/login"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/register"
@@ -24,15 +23,8 @@
         tools:layout="@layout/fragment_register" >
         <action
             android:id="@+id/action_register_to_login"
-            app:destination="@id/login" />
-    </fragment>
-    <fragment
-        android:id="@+id/resetPassword"
-        android:name="com.mosamir.e_commerce.ui.auth.ResetPassword"
-        android:label="fragment_reset_password"
-        tools:layout="@layout/fragment_reset_password" >
-        <action
-            android:id="@+id/action_resetPassword_to_login"
-            app:destination="@id/login" />
+            app:destination="@id/login"
+            app:popUpTo="@id/register"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
