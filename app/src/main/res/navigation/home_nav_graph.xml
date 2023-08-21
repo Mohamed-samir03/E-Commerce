@@ -7,22 +7,22 @@
 
     <fragment
         android:id="@+id/home2"
-        android:name="com.mosamir.e_commerce.ui.home.Home"
+        android:name="com.mosamir.e_commerce.Home"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/shopping"
-        android:name="com.mosamir.e_commerce.ui.home.Shopping"
+        android:name="com.mosamir.e_commerce.Shopping"
         android:label="fragment_shopping"
         tools:layout="@layout/fragment_shopping" />
     <fragment
         android:id="@+id/favourite2"
-        android:name="com.mosamir.e_commerce.ui.home.Favourite"
+        android:name="com.mosamir.e_commerce.Favourite"
         android:label="fragment_favourite"
         tools:layout="@layout/fragment_favourite" />
     <fragment
         android:id="@+id/profile2"
-        android:name="com.mosamir.e_commerce.ui.home.Profile"
+        android:name="com.mosamir.e_commerce.Profile"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>

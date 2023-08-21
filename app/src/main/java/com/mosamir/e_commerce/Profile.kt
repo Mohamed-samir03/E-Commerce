@@ -1,4 +1,4 @@
-package com.mosamir.e_commerce.ui.home
+package com.mosamir.e_commerce
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,12 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.mosamir.e_commerce.databinding.FragmentHomeBinding
+import com.mosamir.e_commerce.databinding.FragmentProfileBinding
 
+class Profile : Fragment() {
 
-class Home : Fragment() {
-
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private lateinit var mNavController: NavController
 
@@ -26,7 +25,7 @@ class Home : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentProfileBinding.inflate(inflater, container, false)
 
 
 

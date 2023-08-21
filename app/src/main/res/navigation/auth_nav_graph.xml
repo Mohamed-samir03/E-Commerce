@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/login"
-        android:name="com.mosamir.e_commerce.ui.auth.Login"
+        android:name="com.mosamir.e_commerce.login.presentation.Login"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/register"
-        android:name="com.mosamir.e_commerce.ui.auth.Register"
+        android:name="com.mosamir.e_commerce.Register"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action

@@ -1,13 +1,9 @@
-package com.mosamir.e_commerce.ui.home
+package com.mosamir.e_commerce
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
-import com.mosamir.e_commerce.R
 import com.mosamir.e_commerce.databinding.ActivityHomeBinding
-import androidx.navigation.ui.NavigationUI.setupWithNavController
 
 class HomeActivity : AppCompatActivity() {
 

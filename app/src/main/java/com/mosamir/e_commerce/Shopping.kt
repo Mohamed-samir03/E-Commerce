@@ -1,4 +1,4 @@
-package com.mosamir.e_commerce.ui.home
+package com.mosamir.e_commerce
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,11 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.mosamir.e_commerce.databinding.FragmentFavouriteBinding
+import com.mosamir.e_commerce.databinding.FragmentShoppingBinding
 
-class Favourite : Fragment() {
+class Shopping : Fragment() {
 
-    private var _binding: FragmentFavouriteBinding? = null
+    private var _binding: FragmentShoppingBinding? = null
     private val binding get() = _binding!!
     private lateinit var mNavController: NavController
 
@@ -25,12 +25,13 @@ class Favourite : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentFavouriteBinding.inflate(inflater, container, false)
+        _binding = FragmentShoppingBinding.inflate(inflater, container, false)
 
 
 
         return binding.root
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

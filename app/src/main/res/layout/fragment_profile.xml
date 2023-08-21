@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="@dimen/_12sdp"
     android:background="@color/background"
-    tools:context=".ui.home.Profile">
+    tools:context=".Profile">
 
     <TextView
         android:layout_width="wrap_content"

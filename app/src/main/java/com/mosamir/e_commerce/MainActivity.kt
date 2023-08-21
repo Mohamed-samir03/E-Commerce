@@ -1,11 +1,10 @@
-package com.mosamir.e_commerce.ui
+package com.mosamir.e_commerce
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import com.mosamir.e_commerce.databinding.ActivityMainBinding
-import com.mosamir.e_commerce.ui.auth.AuthActivity
 import kotlinx.coroutines.delay
 
 class MainActivity : AppCompatActivity() {

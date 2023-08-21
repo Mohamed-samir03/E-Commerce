@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:padding="@dimen/_12sdp"
-    tools:context=".ui.auth.Register">
+    tools:context=".Register">
 
     <ImageView
         android:id="@+id/go_back_fromRegister"

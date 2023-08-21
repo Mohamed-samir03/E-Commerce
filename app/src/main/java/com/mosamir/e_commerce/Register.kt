@@ -1,4 +1,4 @@
-package com.mosamir.e_commerce.ui.auth
+package com.mosamir.e_commerce
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.mosamir.e_commerce.databinding.FragmentRegisterBinding
-import com.mosamir.e_commerce.ui.home.HomeActivity
 
 
 class Register : Fragment() {
