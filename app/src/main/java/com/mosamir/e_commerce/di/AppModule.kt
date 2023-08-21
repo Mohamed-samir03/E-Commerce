@@ -1,10 +1,13 @@
 package com.mosamir.e_commerce.di
 
+import android.app.Application
+import android.content.Context
 import com.mosamir.e_commerce.login.data.data_source.remote.LoginApiService
 import com.mosamir.e_commerce.util.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -37,5 +40,7 @@ object AppModule {
     @Singleton
     fun provideLoginApiService(retrofit: Retrofit):LoginApiService
         = retrofit.create(LoginApiService::class.java)
+
+
 
 }

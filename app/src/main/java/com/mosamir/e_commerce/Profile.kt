@@ -1,5 +1,6 @@
 package com.mosamir.e_commerce
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.mosamir.e_commerce.databinding.FragmentProfileBinding
+import com.mosamir.e_commerce.util.SessionManager
 
 class Profile : Fragment() {
 
@@ -26,10 +28,19 @@ class Profile : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
-
-
-
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.logout.setOnClickListener {
+            SessionManager.clearData(requireContext())
+            val intent = Intent(requireContext(), AuthActivity::class.java)
+            startActivity(intent)
+            activity?.finish()
+        }
+
     }
 
     override fun onDestroyView() {

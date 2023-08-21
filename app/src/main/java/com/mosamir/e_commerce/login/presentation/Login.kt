@@ -11,9 +11,10 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.mosamir.e_commerce.databinding.FragmentLoginBinding
 import com.mosamir.e_commerce.HomeActivity
+import com.mosamir.e_commerce.databinding.FragmentLoginBinding
 import com.mosamir.e_commerce.util.IResult
+import com.mosamir.e_commerce.util.SessionManager
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -35,6 +36,17 @@ class Login : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        if(!SessionManager.getToken(requireContext()).isNullOrBlank()){
+            val intent = Intent(requireContext(), HomeActivity::class.java)
+            startActivity(intent)
+            activity?.finish()
+        }
 
         binding.goBackFromLogin.setOnClickListener {
 
@@ -67,7 +79,6 @@ class Login : Fragment() {
             }
         }
 
-        return binding.root
     }
 
     override fun onDestroyView() {
