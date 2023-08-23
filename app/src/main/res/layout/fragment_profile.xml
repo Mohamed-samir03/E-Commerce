@@ -9,7 +9,7 @@
     tools:context=".Profile">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Profile"
@@ -20,14 +20,148 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <ImageView
+        android:id="@+id/edit_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:src="@drawable/edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile" />
+
+    <ImageView
+        android:id="@+id/img_profileImage"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_80sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:src="@drawable/profile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile" />
+
+    <EditText
+        android:id="@+id/et_profile_name"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:text="Mohamed Samir"
+        android:hint="enter your name"
+        android:inputType="text"
+        android:enabled="false"
+        android:backgroundTint="@color/hint"
+        android:textColor="@color/title"
+        android:textColorHint="@color/hint"
+        android:textSize="@dimen/_16ssp"
+        android:drawableStart="@drawable/profile"
+        android:drawablePadding="@dimen/_6sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_profileImage" />
+
+    <EditText
+        android:id="@+id/et_profile_email"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:backgroundTint="@color/hint"
+        android:enabled="false"
+        android:drawableStart="@drawable/email"
+        android:drawablePadding="@dimen/_6sdp"
+        android:hint="enter your email"
+        android:text="mohamed@gmail.com"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/title"
+        android:textColorHint="@color/hint"
+        android:textSize="@dimen/_16ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_profile_name" />
+
+    <EditText
+        android:id="@+id/et_profile_phone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:backgroundTint="@color/hint"
+        android:drawableStart="@drawable/phone"
+        android:drawablePadding="@dimen/_6sdp"
+        android:enabled="false"
+        android:hint="enter your phone"
+        android:text="01282579495"
+        android:inputType="phone"
+        android:textColor="@color/title"
+        android:textColorHint="@color/hint"
+        android:textSize="@dimen/_16ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_profile_email" />
+
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="@dimen/_40sdp"-->
+<!--        android:hint="Password"-->
+<!--        android:textColorHint="@color/hint"-->
+<!--        app:endIconMode="password_toggle"-->
+<!--        app:startIconDrawable="@drawable/email"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/editText3">-->
+
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:backgroundTint="@color/hint"-->
+<!--            android:text="123456"-->
+<!--            android:inputType="textPassword"-->
+<!--            android:textColor="@color/title"-->
+<!--            android:textSize="@dimen/_16ssp"/>-->
+
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
+
+    <TextView
         android:id="@+id/logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="logout"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Log Out"
+        android:textColor="@color/error"
+        android:textSize="@dimen/_18ssp"
+        android:layout_marginTop="@dimen/_30sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/et_profile_phone" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_profile_save"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:backgroundTint="@color/success"
+        android:text="Save"
+        android:visibility="gone"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="bold"
+        app:cornerRadius="@dimen/_6sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_profile_phone"
+        app:layout_constraintWidth_percent="0.45" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_profile_cancel"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:backgroundTint="@color/error"
+        android:text="Cancel"
+        android:visibility="gone"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="bold"
+        app:cornerRadius="@dimen/_6sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_profile_phone"
+        app:layout_constraintWidth_percent="0.45" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
