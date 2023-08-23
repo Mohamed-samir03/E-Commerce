@@ -6,16 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:padding="@dimen/_12sdp"
-    tools:context=".Register">
-
-    <ImageView
-        android:id="@+id/go_back_fromRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/arrow_back"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_signUp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_signUp" />
+    tools:context=".register.presentation.Register">
 
     <TextView
         android:id="@+id/tv_signUp"
@@ -143,6 +134,16 @@
         android:textColor="@color/title"
         android:textSize="@dimen/_12ssp"
         app:layout_constraintStart_toStartOf="@+id/btn_register"
+        app:layout_constraintTop_toBottomOf="@+id/btn_register" />
+
+    <ProgressBar
+        android:id="@+id/register_progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_register" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

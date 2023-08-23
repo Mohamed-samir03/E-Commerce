@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import com.mosamir.e_commerce.databinding.ActivityMainBinding
+import com.mosamir.e_commerce.util.SessionManager
 import kotlinx.coroutines.delay
 
 class MainActivity : AppCompatActivity() {
@@ -18,13 +19,17 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launchWhenStarted {
             delay(3000)
 
-            val intent = Intent(applicationContext, AuthActivity::class.java)
-            startActivity(intent)
-            finish()
+            if(!SessionManager.getToken(applicationContext).isNullOrBlank()){
+                val intent = Intent(applicationContext, HomeActivity::class.java)
+                startActivity(intent)
+                finish()
+            }else{
+                val intent = Intent(applicationContext, AuthActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
 
         }
-
-
 
     }
 }

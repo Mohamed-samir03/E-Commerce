@@ -3,6 +3,7 @@ package com.mosamir.e_commerce.di
 import android.app.Application
 import android.content.Context
 import com.mosamir.e_commerce.login.data.data_source.remote.LoginApiService
+import com.mosamir.e_commerce.register.data.data_source.remote.RegisterApiService
 import com.mosamir.e_commerce.util.Constants
 import dagger.Module
 import dagger.Provides
@@ -39,8 +40,11 @@ object AppModule {
     @Provides
     @Singleton
     fun provideLoginApiService(retrofit: Retrofit):LoginApiService
-        = retrofit.create(LoginApiService::class.java)
+            = retrofit.create(LoginApiService::class.java)
 
-
+    @Provides
+    @Singleton
+    fun provideRegisterApiService(retrofit: Retrofit):RegisterApiService
+            = retrofit.create(RegisterApiService::class.java)
 
 }

@@ -8,15 +8,6 @@
     android:padding="@dimen/_12sdp"
     tools:context=".login.presentation.Login">
 
-    <ImageView
-        android:id="@+id/go_back_fromLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/arrow_back"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_login"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_login" />
-
     <TextView
         android:id="@+id/tv_login"
         android:layout_width="wrap_content"

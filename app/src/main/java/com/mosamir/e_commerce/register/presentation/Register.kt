@@ -1,4 +1,4 @@
-package com.mosamir.e_commerce.login.presentation
+package com.mosamir.e_commerce.register.presentation
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,21 +10,21 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.mosamir.e_commerce.HomeActivity
-import com.mosamir.e_commerce.databinding.FragmentLoginBinding
+import com.mosamir.e_commerce.databinding.FragmentRegisterBinding
+import com.mosamir.e_commerce.login.presentation.LoginViewModel
 import com.mosamir.e_commerce.util.IResult
-import com.mosamir.e_commerce.util.SessionManager
 import com.mosamir.e_commerce.util.SessionManager.hide
 import com.mosamir.e_commerce.util.SessionManager.show
 import com.mosamir.e_commerce.util.SessionManager.toast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class Login : Fragment() {
+class Register : Fragment() {
 
-    private var _binding: FragmentLoginBinding? = null
+    private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
     private lateinit var mNavController: NavController
-    private val loginViewModel by viewModels<LoginViewModel>()
+    private val registerViewModel by viewModels<RegisterViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,36 +36,40 @@ class Login : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        _binding = FragmentRegisterBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnLogin.setOnClickListener {
-            loginViewModel.loginUser(binding.etLoginEmail.text.toString(),binding.etLoginPassword.text.toString())
+        binding.btnRegister.setOnClickListener {
+            val name = binding.etRegisterName.text.toString()
+            val phone = binding.etRegisterPhone.text.toString()
+            val email = binding.etRegisterEmail.text.toString()
+            val password = binding.etRegisterPassword.text.toString()
+            registerViewModel.registerUser(name=name,phone=phone,email=email,password=password, image = "")
         }
 
-        binding.tvNotHaveAccount.setOnClickListener {
-            val action = LoginDirections.actionLoginToRegister()
+        binding.tvHaveAccount.setOnClickListener {
+            val action = RegisterDirections.actionRegisterToLogin()
             mNavController.navigate(action)
         }
 
-        loginViewModel.loginResult.observe(requireActivity()){
+        registerViewModel.registerResult.observe(requireActivity()){
             when(it){
                 is IResult.Success ->{
                     val intent = Intent(requireContext(), HomeActivity::class.java)
                     startActivity(intent)
                     activity?.finish()
-                    binding.loginProgressBar.hide()
+                    binding.registerProgressBar.hide()
                 }
                 is IResult.Fail ->{
                     toast(it.error.toString())
-                    binding.loginProgressBar.hide()
+                    binding.registerProgressBar.hide()
                 }
                 is IResult.Loading ->{
-                    binding.loginProgressBar.show()
+                    binding.registerProgressBar.show()
                 }
                 else -> {}
             }

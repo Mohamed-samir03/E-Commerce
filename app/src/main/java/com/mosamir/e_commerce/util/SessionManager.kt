@@ -2,6 +2,9 @@ package com.mosamir.e_commerce.util
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.view.View
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.mosamir.e_commerce.R
 
 object SessionManager {
@@ -35,6 +38,28 @@ object SessionManager {
         val editor = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE).edit()
         editor.clear()
         editor.apply()
+    }
+
+    /////////
+
+    fun View.hide() {
+        visibility = View.GONE
+    }
+
+    fun View.show() {
+        visibility = View.VISIBLE
+    }
+
+    fun View.disable() {
+        isEnabled = false
+    }
+
+    fun View.enabled() {
+        isEnabled = true
+    }
+
+    fun Fragment.toast(msg: String?) {
+        Toast.makeText(requireContext(), msg, Toast.LENGTH_LONG).show()
     }
 
 }

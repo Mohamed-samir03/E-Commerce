@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/register"
-        android:name="com.mosamir.e_commerce.Register"
+        android:name="com.mosamir.e_commerce.register.presentation.Register"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
