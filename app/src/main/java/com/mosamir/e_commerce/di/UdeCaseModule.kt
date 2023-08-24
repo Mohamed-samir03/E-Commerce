@@ -3,6 +3,9 @@ package com.mosamir.e_commerce.di
 import com.mosamir.e_commerce.login.domain.repository.ILoginRepo
 import com.mosamir.e_commerce.login.domain.use_case.ILoginUseCase
 import com.mosamir.e_commerce.login.domain.use_case.LoginUseCase
+import com.mosamir.e_commerce.profile.domain.repository.IProfileRepo
+import com.mosamir.e_commerce.profile.domain.use_case.GetProfileUseCase
+import com.mosamir.e_commerce.profile.domain.use_case.IGetProfileUseCase
 import com.mosamir.e_commerce.register.domain.repository.IRegisterRepo
 import com.mosamir.e_commerce.register.domain.use_case.IRegisterUseCase
 import com.mosamir.e_commerce.register.domain.use_case.RegisterUseCase
@@ -22,5 +25,8 @@ object UdeCaseModule {
 
     @Provides
     fun provideRegisterUseCase(iRegisterRepo: IRegisterRepo):IRegisterUseCase = RegisterUseCase(iRegisterRepo)
+
+    @Provides
+    fun provideGetProfileUseCase(iProfileRepo: IProfileRepo):IGetProfileUseCase = GetProfileUseCase(iProfileRepo)
 
 }

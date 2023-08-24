@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_favourite" />
     <fragment
         android:id="@+id/profile2"
-        android:name="com.mosamir.e_commerce.Profile"
+        android:name="com.mosamir.e_commerce.profile.presentation.Profile"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>
