@@ -7,7 +7,7 @@ import com.mosamir.e_commerce.util.IResult
 import javax.inject.Inject
 
 class LoginUseCase @Inject constructor(
-    val iLoginRepo: ILoginRepo
+     val iLoginRepo: ILoginRepo
 ):ILoginUseCase {
     override suspend fun loginUser(loginRequest: LoginRequest): IResult<LoginResponse> {
         return iLoginRepo.loginUser(loginRequest)

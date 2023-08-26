@@ -44,14 +44,13 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_50sdp"
         android:layout_marginTop="@dimen/_20sdp"
-        android:text="Mo Samer"
-        android:hint="enter your name"
+        android:hint="Your Name"
         android:inputType="text"
         android:enabled="false"
         android:backgroundTint="@color/hint"
         android:textColor="@color/title"
         android:textColorHint="@color/hint"
-        android:textSize="@dimen/_16ssp"
+        android:textSize="@dimen/_14ssp"
         android:drawableStart="@drawable/profile"
         android:drawablePadding="@dimen/_6sdp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,12 +66,11 @@
         android:enabled="false"
         android:drawableStart="@drawable/email"
         android:drawablePadding="@dimen/_6sdp"
-        android:hint="enter your email"
-        android:text="mohamed@gmail.com"
+        android:hint="Your Email"
         android:inputType="textEmailAddress"
         android:textColor="@color/title"
         android:textColorHint="@color/hint"
-        android:textSize="@dimen/_16ssp"
+        android:textSize="@dimen/_14ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_profile_name" />
@@ -86,37 +84,39 @@
         android:drawableStart="@drawable/phone"
         android:drawablePadding="@dimen/_6sdp"
         android:enabled="false"
-        android:hint="enter your phone"
-        android:text="01282579495"
+        android:hint="Your Phone"
         android:inputType="phone"
         android:textColor="@color/title"
         android:textColorHint="@color/hint"
-        android:textSize="@dimen/_16ssp"
+        android:textSize="@dimen/_14ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_profile_email" />
 
-<!--    <com.google.android.material.textfield.TextInputLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="@dimen/_40sdp"-->
-<!--        android:hint="Password"-->
-<!--        android:textColorHint="@color/hint"-->
-<!--        app:endIconMode="password_toggle"-->
-<!--        app:startIconDrawable="@drawable/email"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/editText3">-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:hint="Your Password"
+        android:visibility="gone"
+        android:textColorHint="@color/hint"
+        app:endIconMode="password_toggle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_profile_phone"
+        app:startIconDrawable="@drawable/password">
 
-<!--        <com.google.android.material.textfield.TextInputEditText-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:backgroundTint="@color/hint"-->
-<!--            android:text="123456"-->
-<!--            android:inputType="textPassword"-->
-<!--            android:textColor="@color/title"-->
-<!--            android:textSize="@dimen/_16ssp"/>-->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_profile_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/hint"
+            android:inputType="textPassword"
+            android:textColor="@color/title"
+            android:textSize="@dimen/_14ssp" />
 
-<!--    </com.google.android.material.textfield.TextInputLayout>-->
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/logout"
@@ -134,34 +134,34 @@
         android:id="@+id/btn_profile_save"
         android:layout_width="0dp"
         android:layout_height="@dimen/_50sdp"
-        android:layout_marginTop="@dimen/_20sdp"
         android:backgroundTint="@color/success"
         android:text="Save"
         android:visibility="gone"
+        android:layout_marginTop="@dimen/_20sdp"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="@dimen/_16ssp"
         android:textStyle="bold"
         app:cornerRadius="@dimen/_6sdp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_profile_phone"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
         app:layout_constraintWidth_percent="0.45" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_profile_cancel"
         android:layout_width="0dp"
         android:layout_height="@dimen/_50sdp"
-        android:layout_marginTop="@dimen/_20sdp"
         android:backgroundTint="@color/error"
         android:text="Cancel"
         android:visibility="gone"
+        android:layout_marginTop="@dimen/_20sdp"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="@dimen/_16ssp"
         android:textStyle="bold"
         app:cornerRadius="@dimen/_6sdp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_profile_phone"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
         app:layout_constraintWidth_percent="0.45" />
 
     <ProgressBar
