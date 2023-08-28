@@ -1,8 +1,12 @@
-package com.mosamir.e_commerce
+package com.mosamir.e_commerce.util
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.mosamir.e_commerce.Favourite
+import com.mosamir.e_commerce.Home
+import com.mosamir.e_commerce.R
+import com.mosamir.e_commerce.Shopping
 import com.mosamir.e_commerce.databinding.ActivityHomeBinding
 import com.mosamir.e_commerce.profile.presentation.Profile
 import dagger.hilt.android.AndroidEntryPoint

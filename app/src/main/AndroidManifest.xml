@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:name=".ECommerceApp"
+        android:name=".util.ECommerceApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -16,13 +16,13 @@
         android:theme="@style/Theme.ECommerce"
         tools:targetApi="31">
         <activity
-            android:name=".HomeActivity"
+            android:name=".util.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".AuthActivity"
+            android:name=".util.AuthActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".util.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

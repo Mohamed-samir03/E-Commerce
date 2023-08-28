@@ -9,6 +9,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.mosamir.e_commerce.databinding.FragmentShoppingBinding
 
+
 class Shopping : Fragment() {
 
     private var _binding: FragmentShoppingBinding? = null

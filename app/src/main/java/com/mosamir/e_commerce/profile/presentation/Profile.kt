@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.mosamir.e_commerce.AuthActivity
+import com.mosamir.e_commerce.util.AuthActivity
 import com.mosamir.e_commerce.databinding.FragmentProfileBinding
 import com.mosamir.e_commerce.profile.domain.model.UpdateProfileRequest
 import com.mosamir.e_commerce.util.IResult

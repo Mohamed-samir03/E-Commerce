@@ -1,4 +1,4 @@
-package com.mosamir.e_commerce
+package com.mosamir.e_commerce.util
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

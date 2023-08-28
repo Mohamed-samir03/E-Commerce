@@ -9,6 +9,7 @@
     tools:context=".Home">
 
     <TextView
+        android:id="@+id/tv_home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Home"
@@ -17,7 +18,31 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.denzcoskun.imageslider.ImageSlider
+        android:id="@+id/image_slider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        app:iss_auto_cycle="true"
+        app:iss_delay="1000"
+        app:iss_period="1000"
+        app:iss_text_align="CENTER"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_home" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_home_product"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:flow_horizontalGap="@dimen/_6sdp"
+        app:flow_verticalGap="@dimen/_6sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_slider"
+        tools:listitem="@layout/item_product" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

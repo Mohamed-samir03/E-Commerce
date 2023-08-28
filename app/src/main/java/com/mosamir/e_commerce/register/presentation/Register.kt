@@ -9,9 +9,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.mosamir.e_commerce.HomeActivity
+import com.mosamir.e_commerce.util.HomeActivity
 import com.mosamir.e_commerce.databinding.FragmentRegisterBinding
-import com.mosamir.e_commerce.login.presentation.LoginViewModel
 import com.mosamir.e_commerce.util.IResult
 import com.mosamir.e_commerce.util.SessionManager.hide
 import com.mosamir.e_commerce.util.SessionManager.show
