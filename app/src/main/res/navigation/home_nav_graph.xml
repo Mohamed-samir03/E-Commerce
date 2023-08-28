@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/home2"
-        android:name="com.mosamir.e_commerce.Home"
+        android:name="com.mosamir.e_commerce.home.presentation.Home"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment

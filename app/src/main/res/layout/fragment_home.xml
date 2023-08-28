@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    android:padding="@dimen/_12sdp"
-    tools:context=".Home">
+    tools:context=".home.presentation.Home">
 
     <TextView
         android:id="@+id/tv_home"
@@ -16,6 +15,7 @@
         android:textColor="@color/title"
         android:textSize="@dimen/_20ssp"
         android:textStyle="bold"
+        android:layout_marginTop="@dimen/_12sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,8 +23,8 @@
     <com.denzcoskun.imageslider.ImageSlider
         android:id="@+id/image_slider"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_200sdp"
-        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_height="@dimen/_180sdp"
+        android:layout_marginTop="@dimen/_6sdp"
         app:iss_auto_cycle="true"
         app:iss_delay="1000"
         app:iss_period="1000"
@@ -37,8 +37,6 @@
         android:id="@+id/rv_home_product"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:flow_horizontalGap="@dimen/_6sdp"
-        app:flow_verticalGap="@dimen/_6sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_slider"

@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.mosamir.e_commerce.Favourite
-import com.mosamir.e_commerce.Home
+import com.mosamir.e_commerce.home.presentation.Home
 import com.mosamir.e_commerce.R
 import com.mosamir.e_commerce.Shopping
 import com.mosamir.e_commerce.databinding.ActivityHomeBinding

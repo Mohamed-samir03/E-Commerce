@@ -3,13 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_gravity="center"
+    android:layout_margin="@dimen/_6sdp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/stats"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="@color/white"
+
         android:elevation="@dimen/_4sdp"
         app:cardCornerRadius="@dimen/_10sdp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +24,7 @@
             <ImageView
                 android:id="@+id/product_image"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="150dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/logo"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -37,31 +38,47 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/_6sdp"
                 android:text="ابل ايفون 12 برو ماكس - 256جيجابيت, ازرق"
-                android:textColor="@color/title"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_14ssp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/product_image" />
 
-            <TextView
-                android:id="@+id/product_price"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginBottom="@dimen/_6sdp"
-                android:text="2000$"
-                android:textColor="@color/title"
-                android:textSize="@dimen/_14ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/product_name" />
+                app:layout_constraintTop_toBottomOf="@+id/product_name">
+
+                <TextView
+                    android:id="@+id/product_oldPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_8sdp"
+                    android:text="@string/old_price"
+                    android:textColor="@color/hint"
+                    android:textSize="@dimen/_14ssp" />
+
+                <TextView
+                    android:id="@+id/product_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2000$"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp" />
+
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/product_favourite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_6sdp"
-                android:layout_marginBottom="-16dp"
+                android:layout_marginBottom="-12dp"
                 android:background="@drawable/favourite_background"
                 android:padding="@dimen/_6sdp"
                 android:src="@drawable/unfavorite_icon"
