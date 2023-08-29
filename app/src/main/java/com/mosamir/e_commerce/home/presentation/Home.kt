@@ -59,6 +59,7 @@ class Home : Fragment() {
             when(it){
                 is IResult.Success ->{
                     data = it.data.data.data as ArrayList<DataX>
+
                     val productAdapter = ProductAdapter(requireContext(),data)
                     binding.rvHomeProduct.apply {
                         adapter = productAdapter
