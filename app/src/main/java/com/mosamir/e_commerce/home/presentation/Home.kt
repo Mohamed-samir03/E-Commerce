@@ -5,23 +5,33 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.denzcoskun.imageslider.models.SlideModel
 import com.mosamir.e_commerce.databinding.FragmentHomeBinding
 import com.mosamir.e_commerce.home.domain.model.DataX
+import com.mosamir.e_commerce.util.IResult
+import com.mosamir.e_commerce.util.SessionManager
+import com.mosamir.e_commerce.util.SessionManager.hide
+import com.mosamir.e_commerce.util.SessionManager.show
+import com.mosamir.e_commerce.util.SessionManager.toast
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class Home : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var mNavController: NavController
+    private val homeViewModel by viewModels<HomeViewModel>()
+    lateinit var data:ArrayList<DataX>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mNavController = findNavController()
+        data = ArrayList()
     }
 
     override fun onCreateView(
@@ -42,54 +52,30 @@ class Home : Fragment() {
         imageList.add(SlideModel("https://bit.ly/45rZ3Gi"))
         binding.imageSlider.setImageList(imageList)
 
+        val token = SessionManager.getToken(requireContext()).toString()
+        homeViewModel.getProducts(token)
 
-        val data:ArrayList<DataX> = ArrayList()
-
-
-        data.add(DataX(
-            description = "ابل ايفون 12 برو ماكق",
-            discount = 0,
-            id = 20,
-            image = "https://student.valuxapps.com/storage/uploads/products/1615440322npwmU.71DVgBTdyLL._SL1500_.jpg",
-            images = listOf(),
-            in_cart = false,
-            in_favorites = true,
-            name = "ابل ايفون 12 برو ماكس",
-            old_price = 500.0,
-            price = 500.0
-        ))
-
-        data.add(DataX(
-            description = "ابل ايفون 12 برو ماكس - 256جيجابيت, ازرق",
-            discount = 40,
-            id = 20,
-            image = "https://student.valuxapps.com/storage/uploads/products/1615440322npwmU.71DVgBTdyLL._SL1500_.jpg",
-            images = listOf(),
-            in_cart = false,
-            in_favorites = false,
-            name = "ابل ايفون 12 برو ماكس - 256جيجابيت, ازرق",
-            old_price = 500.0,
-            price = 300.0
-        ))
-
-        data.add(DataX(
-            description = "ابل ايفون 12 برو ماكس - 256جيجابيت, ازرق",
-            discount = 0,
-            id = 20,
-            image = "https://student.valuxapps.com/storage/uploads/products/1615440322npwmU.71DVgBTdyLL._SL1500_.jpg",
-            images = listOf(),
-            in_cart = false,
-            in_favorites = true,
-            name = "ابل ايفون 12 برو ماكس - 256جيجابيت, ازرق",
-            old_price = 500.0,
-            price = 500.0
-        ))
-
-        val productAdapter = ProductAdapter(requireContext(),data)
-        binding.rvHomeProduct.apply {
-            adapter = productAdapter
-            layoutManager = GridLayoutManager(requireContext(), 2)
-            hasFixedSize()
+        homeViewModel.getProductResult.observe(requireActivity()){
+            when(it){
+                is IResult.Success ->{
+                    data = it.data.data.data as ArrayList<DataX>
+                    val productAdapter = ProductAdapter(requireContext(),data)
+                    binding.rvHomeProduct.apply {
+                        adapter = productAdapter
+                        layoutManager = GridLayoutManager(requireContext(), 2)
+                        hasFixedSize()
+                    }
+                    binding.homeProgressBar.hide()
+                }
+                is IResult.Fail ->{
+                    toast(it.error.toString())
+                    binding.homeProgressBar.hide()
+                }
+                is IResult.Loading ->{
+                    binding.homeProgressBar.show()
+                }
+                else -> {}
+            }
         }
 
     }

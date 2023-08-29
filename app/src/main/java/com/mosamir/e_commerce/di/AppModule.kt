@@ -2,6 +2,7 @@ package com.mosamir.e_commerce.di
 
 import android.app.Application
 import android.content.Context
+import com.mosamir.e_commerce.home.data.data_source.remote.ProductsApiService
 import com.mosamir.e_commerce.login.data.data_source.remote.LoginApiService
 import com.mosamir.e_commerce.profile.data.data_source.remote.ProfileApiService
 import com.mosamir.e_commerce.register.data.data_source.remote.RegisterApiService
@@ -52,5 +53,11 @@ object AppModule {
     @Singleton
     fun provideProfileApiService(retrofit: Retrofit):ProfileApiService
             = retrofit.create(ProfileApiService::class.java)
+
+
+    @Provides
+    @Singleton
+    fun provideProductsApiService(retrofit: Retrofit):ProductsApiService
+            = retrofit.create(ProductsApiService::class.java)
 
 }

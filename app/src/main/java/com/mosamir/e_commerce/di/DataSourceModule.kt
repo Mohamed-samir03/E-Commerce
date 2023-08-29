@@ -1,5 +1,8 @@
 package com.mosamir.e_commerce.di
 
+import com.mosamir.e_commerce.home.data.data_source.remote.IProductDataSource
+import com.mosamir.e_commerce.home.data.data_source.remote.ProductDataSource
+import com.mosamir.e_commerce.home.data.data_source.remote.ProductsApiService
 import com.mosamir.e_commerce.login.data.data_source.remote.ILoginDataSource
 import com.mosamir.e_commerce.login.data.data_source.remote.LoginApiService
 import com.mosamir.e_commerce.login.data.data_source.remote.LoginDataSource
@@ -23,11 +26,13 @@ object DataSourceModule {
     @Provides
     fun getLoginDataSource(apiService: LoginApiService):ILoginDataSource = LoginDataSource(apiService)
 
-
     @Provides
     fun getRegisterDataSource(apiService: RegisterApiService):IRegisterDataSource = RegisterDataSource(apiService)
 
     @Provides
     fun getProfileDataSource(apiService: ProfileApiService):IProfileDataSource = ProfileDataSource(apiService)
+
+    @Provides
+    fun getProductDataSource(apiService: ProductsApiService):IProductDataSource = ProductDataSource(apiService)
 
 }
