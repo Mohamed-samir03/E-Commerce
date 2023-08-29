@@ -41,7 +41,7 @@
         app:layout_constraintGuide_percent="0.40"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textField"
+        android:id="@+id/textField_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Email"
@@ -71,7 +71,7 @@
         app:endIconMode="password_toggle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textField">
+        app:layout_constraintTop_toBottomOf="@+id/textField_search">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_login_password"

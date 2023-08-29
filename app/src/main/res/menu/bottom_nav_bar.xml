@@ -7,8 +7,8 @@
         android:title="Home" />
     <item
         android:id="@+id/shop"
-        android:icon="@drawable/shopping_icon"
-        android:title="Shopping" />
+        android:icon="@drawable/search"
+        android:title="Search" />
     <item
         android:id="@+id/favourite"
         android:icon="@drawable/favorite_icon"

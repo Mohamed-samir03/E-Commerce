@@ -3,6 +3,8 @@ package com.mosamir.e_commerce.di
 import com.mosamir.e_commerce.home.domain.repository.IProductRepo
 import com.mosamir.e_commerce.home.domain.use_case.GetProductsUseCase
 import com.mosamir.e_commerce.home.domain.use_case.IGetProductsUseCase
+import com.mosamir.e_commerce.home.domain.use_case.ISearchUseCase
+import com.mosamir.e_commerce.home.domain.use_case.SearchUseCase
 import com.mosamir.e_commerce.login.domain.repository.ILoginRepo
 import com.mosamir.e_commerce.login.domain.use_case.ILoginUseCase
 import com.mosamir.e_commerce.login.domain.use_case.LoginUseCase
@@ -39,5 +41,8 @@ object UdeCaseModule {
 
     @Provides
     fun provideGetProductsUseCase(iProductRepo: IProductRepo):IGetProductsUseCase = GetProductsUseCase(iProductRepo)
+
+    @Provides
+    fun provideSearchProductsUseCase(iProductRepo: IProductRepo):ISearchUseCase = SearchUseCase(iProductRepo)
 
 }

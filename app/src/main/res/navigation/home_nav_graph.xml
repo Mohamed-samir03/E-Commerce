@@ -12,12 +12,12 @@
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/shopping"
-        android:name="com.mosamir.e_commerce.Shopping"
+        android:name="com.mosamir.e_commerce.home.presentation.Shopping"
         android:label="fragment_shopping"
         tools:layout="@layout/fragment_shopping" />
     <fragment
         android:id="@+id/favourite2"
-        android:name="com.mosamir.e_commerce.Favourite"
+        android:name="com.mosamir.e_commerce.home.presentation.Favourite"
         android:label="fragment_favourite"
         tools:layout="@layout/fragment_favourite" />
     <fragment
