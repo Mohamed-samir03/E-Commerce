@@ -13,8 +13,26 @@ sealed class IResult<out T> {
 
     }
 
-    fun <T>IResult.Success<T>.getData():T{
-        return this.data
+    fun isSuccessful():Boolean{
+        return this is Success
+    }
+    fun isFailed():Boolean{
+        return this is Fail
     }
 
+}
+
+fun  <T>IResult<T>.getData():T?{
+
+    if (this is IResult.Success)
+        return this.data
+
+    return null
+}
+fun  <T>IResult<T>.getError():String?{
+
+    if (this is IResult.Fail)
+        return this.error
+
+    return null
 }

@@ -3,6 +3,7 @@ package com.mosamir.e_commerce.home.data.data_source.remote
 import com.mosamir.e_commerce.home.domain.model.ProductResponse
 import com.mosamir.e_commerce.home.domain.model.SearchRequest
 import com.mosamir.e_commerce.util.IResult
+import com.mosamir.e_commerce.util.NetworkState
 import java.lang.Exception
 import javax.inject.Inject
 
@@ -14,7 +15,7 @@ class ProductDataSource @Inject constructor(
             val productsData = productsApiService.getProducts(token)
             IResult.onSuccess(productsData)
         }catch (e: Exception){
-            IResult.onFail(e.localizedMessage)
+            IResult.onFail(NetworkState.getErrorMessage(e).msg.toString())
         }
     }
 
@@ -23,7 +24,7 @@ class ProductDataSource @Inject constructor(
             val productsData = productsApiService.searchProduct(searchRequest)
             IResult.onSuccess(productsData)
         }catch (e: Exception){
-            IResult.onFail(e.localizedMessage)
+            IResult.onFail(NetworkState.getErrorMessage(e).msg.toString())
         }
     }
 }
