@@ -7,19 +7,31 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.mosamir.e_commerce.util.AuthActivity
 import com.mosamir.e_commerce.databinding.FragmentProfileBinding
+import com.mosamir.e_commerce.home.domain.model.DataX
+import com.mosamir.e_commerce.home.domain.model.ProductResponse
+import com.mosamir.e_commerce.home.presentation.ProductAdapter
+import com.mosamir.e_commerce.profile.domain.model.ProfileResponse
 import com.mosamir.e_commerce.profile.domain.model.UpdateProfileRequest
 import com.mosamir.e_commerce.util.IResult
+import com.mosamir.e_commerce.util.NetworkState
 import com.mosamir.e_commerce.util.SessionManager
 import com.mosamir.e_commerce.util.SessionManager.disable
 import com.mosamir.e_commerce.util.SessionManager.enabled
 import com.mosamir.e_commerce.util.SessionManager.hide
 import com.mosamir.e_commerce.util.SessionManager.show
 import com.mosamir.e_commerce.util.SessionManager.toast
+import com.mosamir.e_commerce.util.getData
+import com.mosamir.e_commerce.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class Profile : Fragment() {
@@ -50,24 +62,7 @@ class Profile : Fragment() {
 
         profileViewModel.getProfileUser(token)
 
-        profileViewModel.getProfileResult.observe(requireActivity()){
-            when(it){
-                is IResult.Success ->{
-                    binding.etProfileName.setText(it.data.data.name)
-                    binding.etProfileEmail.setText(it.data.data.email)
-                    binding.etProfilePhone.setText(it.data.data.phone)
-                    binding.profileProgressBar.hide()
-                }
-                is IResult.Fail ->{
-                    toast(it.error.toString())
-                    binding.profileProgressBar.hide()
-                }
-                is IResult.Loading ->{
-                    binding.profileProgressBar.show()
-                }
-                else -> {}
-            }
-        }
+        observeOnGetProfile()
 
         binding.editProfile.setOnClickListener {
             showEditDesign()
@@ -89,25 +84,7 @@ class Profile : Fragment() {
 
         }
 
-        profileViewModel.updateProfileResult.observe(requireActivity()){
-            when(it){
-                is IResult.Success ->{
-                    binding.etProfileName.setText(it.data.data.name)
-                    binding.etProfileEmail.setText(it.data.data.email)
-                    binding.etProfilePhone.setText(it.data.data.phone)
-                    binding.profileProgressBar.hide()
-                    hideEditDesign()
-                }
-                is IResult.Fail ->{
-                    toast(it.error.toString())
-                    binding.profileProgressBar.hide()
-                }
-                is IResult.Loading ->{
-                    binding.profileProgressBar.show()
-                }
-                else -> {}
-            }
-        }
+        observeOnUpdateProfile()
 
         binding.btnProfileCancel.setOnClickListener {
             hideEditDesign()
@@ -121,6 +98,65 @@ class Profile : Fragment() {
             activity?.finish()
         }
 
+    }
+
+    private fun observeOnGetProfile(){
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                profileViewModel.getProfileResult.collect {networkState->
+                    when (networkState?.status) {
+                        NetworkState.Status.SUCCESS -> {
+                            val result = networkState.data as IResult<ProfileResponse>
+                            binding.etProfileName.setText(result.getData()?.data?.name)
+                            binding.etProfileEmail.setText(result.getData()?.data?.email)
+                            binding.etProfilePhone.setText(result.getData()?.data?.phone)
+                            binding.profileProgressBar.hide()
+                        }
+
+                        NetworkState.Status.FAILED -> {
+                            showToast(networkState.msg.toString())
+                            binding.profileProgressBar.hide()
+                        }
+
+                        NetworkState.Status.RUNNING-> {
+                            binding.profileProgressBar.show()
+                        }
+
+                        else -> {}
+                    }
+                }
+            }
+        }
+    }
+
+    private fun observeOnUpdateProfile(){
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                profileViewModel.updateProfileResult.collect {networkState->
+                    when (networkState?.status) {
+                        NetworkState.Status.SUCCESS -> {
+                            val result = networkState.data as IResult<ProfileResponse>
+                            binding.etProfileName.setText(result.getData()?.data?.name)
+                            binding.etProfileEmail.setText(result.getData()?.data?.email)
+                            binding.etProfilePhone.setText(result.getData()?.data?.phone)
+                            binding.profileProgressBar.hide()
+                            hideEditDesign()
+                        }
+
+                        NetworkState.Status.FAILED -> {
+                            showToast(networkState.msg.toString())
+                            binding.profileProgressBar.hide()
+                        }
+
+                        NetworkState.Status.RUNNING-> {
+                            binding.profileProgressBar.show()
+                        }
+
+                        else -> {}
+                    }
+                }
+            }
+        }
     }
 
     private fun showEditDesign(){

@@ -3,6 +3,7 @@ package com.mosamir.e_commerce.profile.data.data_source.remote
 import com.mosamir.e_commerce.profile.domain.model.ProfileResponse
 import com.mosamir.e_commerce.profile.domain.model.UpdateProfileRequest
 import com.mosamir.e_commerce.util.IResult
+import com.mosamir.e_commerce.util.NetworkState
 import java.lang.Exception
 import javax.inject.Inject
 
@@ -14,7 +15,7 @@ class ProfileDataSource @Inject constructor(
             val profileData = profileApiService.profileUser(token)
             IResult.onSuccess(profileData)
         }catch (e: Exception){
-            IResult.onFail(e.localizedMessage)
+            IResult.onFail(NetworkState.getErrorMessage(e).msg.toString())
         }
     }
 
@@ -26,7 +27,7 @@ class ProfileDataSource @Inject constructor(
             val profileData = profileApiService.updateProfile(token,updateProfileRequest)
             IResult.onSuccess(profileData)
         }catch (e: Exception){
-            IResult.onFail(e.localizedMessage)
+            IResult.onFail(NetworkState.getErrorMessage(e).msg.toString())
         }
     }
 }
