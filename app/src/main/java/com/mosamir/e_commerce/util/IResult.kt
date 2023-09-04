@@ -2,7 +2,6 @@ package com.mosamir.e_commerce.util
 
 sealed class IResult<out T> {
 
-    object Loading : IResult<Nothing>()
     data class Success<T>(val data: T) : IResult<T>()
     data class Fail<T>(val error: String?) : IResult<T>()
 

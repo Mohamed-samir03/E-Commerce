@@ -7,15 +7,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.mosamir.e_commerce.util.HomeActivity
 import com.mosamir.e_commerce.databinding.FragmentLoginBinding
+import com.mosamir.e_commerce.profile.domain.model.ProfileResponse
 import com.mosamir.e_commerce.util.IResult
+import com.mosamir.e_commerce.util.NetworkState
 import com.mosamir.e_commerce.util.SessionManager.hide
 import com.mosamir.e_commerce.util.SessionManager.show
 import com.mosamir.e_commerce.util.SessionManager.toast
+import com.mosamir.e_commerce.util.getData
+import com.mosamir.e_commerce.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class Login : Fragment() {
@@ -51,25 +59,36 @@ class Login : Fragment() {
             mNavController.navigate(action)
         }
 
-        loginViewModel.loginResult.observe(requireActivity()){
-            when(it){
-                is IResult.Success ->{
-                    val intent = Intent(requireContext(), HomeActivity::class.java)
-                    startActivity(intent)
-                    activity?.finish()
-                    binding.loginProgressBar.hide()
+        observeOnLogin()
+
+    }
+
+    private fun observeOnLogin(){
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                loginViewModel.loginResult.collect { networkState->
+                    when (networkState?.status) {
+                        NetworkState.Status.SUCCESS -> {
+                            val intent = Intent(requireContext(), HomeActivity::class.java)
+                            startActivity(intent)
+                            activity?.finish()
+                            binding.loginProgressBar.hide()
+                        }
+
+                        NetworkState.Status.FAILED -> {
+                            showToast(networkState.msg.toString())
+                            binding.loginProgressBar.hide()
+                        }
+
+                        NetworkState.Status.RUNNING-> {
+                            binding.loginProgressBar.show()
+                        }
+
+                        else -> {}
+                    }
                 }
-                is IResult.Fail ->{
-                    toast(it.error.toString())
-                    binding.loginProgressBar.hide()
-                }
-                is IResult.Loading ->{
-                    binding.loginProgressBar.show()
-                }
-                else -> {}
             }
         }
-
     }
 
     override fun onDestroyView() {

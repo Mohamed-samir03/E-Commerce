@@ -7,15 +7,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.mosamir.e_commerce.util.HomeActivity
 import com.mosamir.e_commerce.databinding.FragmentRegisterBinding
 import com.mosamir.e_commerce.util.IResult
+import com.mosamir.e_commerce.util.NetworkState
 import com.mosamir.e_commerce.util.SessionManager.hide
 import com.mosamir.e_commerce.util.SessionManager.show
 import com.mosamir.e_commerce.util.SessionManager.toast
+import com.mosamir.e_commerce.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class Register : Fragment() {
@@ -55,25 +61,36 @@ class Register : Fragment() {
             mNavController.navigate(action)
         }
 
-        registerViewModel.registerResult.observe(requireActivity()){
-            when(it){
-                is IResult.Success ->{
-                    val intent = Intent(requireContext(), HomeActivity::class.java)
-                    startActivity(intent)
-                    activity?.finish()
-                    binding.registerProgressBar.hide()
+        observeOnRegister()
+
+    }
+
+    private fun observeOnRegister(){
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                registerViewModel.registerResult.collect { networkState->
+                    when (networkState?.status) {
+                        NetworkState.Status.SUCCESS -> {
+                            val intent = Intent(requireContext(), HomeActivity::class.java)
+                            startActivity(intent)
+                            activity?.finish()
+                            binding.registerProgressBar.hide()
+                        }
+
+                        NetworkState.Status.FAILED -> {
+                            showToast(networkState.msg.toString())
+                            binding.registerProgressBar.hide()
+                        }
+
+                        NetworkState.Status.RUNNING-> {
+                            binding.registerProgressBar.show()
+                        }
+
+                        else -> {}
+                    }
                 }
-                is IResult.Fail ->{
-                    toast(it.error.toString())
-                    binding.registerProgressBar.hide()
-                }
-                is IResult.Loading ->{
-                    binding.registerProgressBar.show()
-                }
-                else -> {}
             }
         }
-
     }
 
     override fun onDestroyView() {
