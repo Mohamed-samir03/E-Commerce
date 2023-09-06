@@ -21,17 +21,17 @@ object SessionManager {
         return getString(context, USER_TOKEN)
     }
 
-    private fun saveString(context: Context, key: String, value: String) {
+    fun saveString(context: Context, key: String, value: String) {
         val prefs: SharedPreferences = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)
         val editor = prefs.edit()
         editor.putString(key, value)
         editor.apply()
     }
 
-    private fun getString(context: Context, key: String): String? {
+    fun getString(context: Context, key: String): String? {
         val prefs: SharedPreferences =
             context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)
-        return prefs.getString(this.USER_TOKEN, null)
+        return prefs.getString(key, null)
     }
 
     fun clearData(context: Context){

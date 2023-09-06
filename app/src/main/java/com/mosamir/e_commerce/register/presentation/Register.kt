@@ -14,11 +14,15 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.mosamir.e_commerce.util.HomeActivity
 import com.mosamir.e_commerce.databinding.FragmentRegisterBinding
+import com.mosamir.e_commerce.login.domain.model.LoginResponse
+import com.mosamir.e_commerce.util.Constants
 import com.mosamir.e_commerce.util.IResult
 import com.mosamir.e_commerce.util.NetworkState
+import com.mosamir.e_commerce.util.SessionManager
 import com.mosamir.e_commerce.util.SessionManager.hide
 import com.mosamir.e_commerce.util.SessionManager.show
 import com.mosamir.e_commerce.util.SessionManager.toast
+import com.mosamir.e_commerce.util.getData
 import com.mosamir.e_commerce.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -71,6 +75,13 @@ class Register : Fragment() {
                 registerViewModel.registerResult.collect { networkState->
                     when (networkState?.status) {
                         NetworkState.Status.SUCCESS -> {
+                            val data = networkState.data as IResult<LoginResponse>
+                            val name = data.getData()?.data?.name.toString()
+                            val email = data.getData()?.data?.email.toString()
+                            val phone = data.getData()?.data?.phone.toString()
+                            SessionManager.saveString(requireContext(), Constants.USER_NAME ,name)
+                            SessionManager.saveString(requireContext(), Constants.USER_EMAIL ,email)
+                            SessionManager.saveString(requireContext(), Constants.USER_PHONE ,phone)
                             val intent = Intent(requireContext(), HomeActivity::class.java)
                             startActivity(intent)
                             activity?.finish()

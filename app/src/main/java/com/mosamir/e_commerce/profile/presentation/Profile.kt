@@ -20,6 +20,7 @@ import com.mosamir.e_commerce.home.domain.model.ProductResponse
 import com.mosamir.e_commerce.home.presentation.ProductAdapter
 import com.mosamir.e_commerce.profile.domain.model.ProfileResponse
 import com.mosamir.e_commerce.profile.domain.model.UpdateProfileRequest
+import com.mosamir.e_commerce.util.Constants
 import com.mosamir.e_commerce.util.IResult
 import com.mosamir.e_commerce.util.NetworkState
 import com.mosamir.e_commerce.util.SessionManager
@@ -60,9 +61,11 @@ class Profile : Fragment() {
 
         val token = SessionManager.getToken(requireContext()).toString()
 
-        profileViewModel.getProfileUser(token)
+//        profileViewModel.getProfileUser(token)
+//
+//        observeOnGetProfile()
+        getProfileFromLocal()
 
-        observeOnGetProfile()
 
         binding.editProfile.setOnClickListener {
             showEditDesign()
@@ -88,7 +91,8 @@ class Profile : Fragment() {
 
         binding.btnProfileCancel.setOnClickListener {
             hideEditDesign()
-            profileViewModel.getProfileUser(token)
+//            profileViewModel.getProfileUser(token)
+            getProfileFromLocal()
         }
 
         binding.logout.setOnClickListener {
@@ -157,6 +161,15 @@ class Profile : Fragment() {
                 }
             }
         }
+    }
+
+    private fun getProfileFromLocal(){
+        val name = SessionManager.getString(requireContext(), Constants.USER_NAME)
+        val email = SessionManager.getString(requireContext(), Constants.USER_EMAIL)
+        val phone = SessionManager.getString(requireContext(), Constants.USER_PHONE)
+        binding.etProfileName.setText(name)
+        binding.etProfileEmail.setText(email)
+        binding.etProfilePhone.setText(phone)
     }
 
     private fun showEditDesign(){
