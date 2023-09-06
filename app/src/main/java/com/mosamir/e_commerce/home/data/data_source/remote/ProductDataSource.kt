@@ -19,9 +19,9 @@ class ProductDataSource @Inject constructor(
         }
     }
 
-    override suspend fun searchProduct(searchRequest: SearchRequest): IResult<ProductResponse> {
+    override suspend fun searchProduct(token: String,searchRequest: SearchRequest): IResult<ProductResponse> {
         return try {
-            val productsData = productsApiService.searchProduct(searchRequest)
+            val productsData = productsApiService.searchProduct(token,searchRequest)
             IResult.onSuccess(productsData)
         }catch (e: Exception){
             IResult.onFail(NetworkState.getErrorMessage(e).msg.toString())

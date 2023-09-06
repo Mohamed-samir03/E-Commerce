@@ -45,11 +45,11 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun searchProducts(text:String) {
+    fun searchProducts(token: String,text:String) {
         _searchProductResult.value = NetworkState.LOADING
         viewModelScope.launch {
             try {
-                val result = iSearchUseCase.searchProduct(SearchRequest(text))
+                val result = iSearchUseCase.searchProduct(token,SearchRequest(text))
                 if (result.isSuccessful()){
                     _searchProductResult.value = NetworkState.getLoaded(result)
                 }else{

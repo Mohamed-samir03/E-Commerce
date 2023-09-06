@@ -9,7 +9,7 @@ import javax.inject.Inject
 class SearchUseCase @Inject constructor(
     private val iProductRepo: IProductRepo
 ):ISearchUseCase {
-    override suspend fun searchProduct(searchRequest: SearchRequest): IResult<ProductResponse> {
-        return iProductRepo.searchProduct(searchRequest)
+    override suspend fun searchProduct(token: String,searchRequest: SearchRequest): IResult<ProductResponse> {
+        return iProductRepo.searchProduct(token,searchRequest)
     }
 }

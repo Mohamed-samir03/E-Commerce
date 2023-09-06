@@ -24,8 +24,8 @@ class ProductRepo @Inject constructor(
         }
     }
 
-    override suspend fun searchProduct(searchRequest: SearchRequest): IResult<ProductResponse> {
-        val productData = iProductDataSource.searchProduct(searchRequest)
+    override suspend fun searchProduct(token: String,searchRequest: SearchRequest): IResult<ProductResponse> {
+        val productData = iProductDataSource.searchProduct(token,searchRequest)
         if (productData is IResult.Success){
             if (productData.data.status){
                 return productData

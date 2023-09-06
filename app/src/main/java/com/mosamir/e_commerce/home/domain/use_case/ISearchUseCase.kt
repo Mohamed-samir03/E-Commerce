@@ -6,6 +6,6 @@ import com.mosamir.e_commerce.util.IResult
 
 interface ISearchUseCase {
 
-    suspend fun searchProduct(searchRequest: SearchRequest): IResult<ProductResponse>
+    suspend fun searchProduct(token: String,searchRequest: SearchRequest): IResult<ProductResponse>
 
 }

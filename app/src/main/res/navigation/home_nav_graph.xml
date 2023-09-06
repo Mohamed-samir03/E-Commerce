@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/shopping"
-        android:name="com.mosamir.e_commerce.home.presentation.Shopping"
+        android:name="com.mosamir.e_commerce.home.presentation.Searching"
         android:label="fragment_shopping"
         tools:layout="@layout/fragment_shopping" />
     <fragment

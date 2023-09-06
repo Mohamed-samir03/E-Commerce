@@ -16,6 +16,8 @@ interface ProductsApiService {
     suspend fun getProducts(@Header("Authorization") token: String): ProductResponse
 
     @POST(SEARCH)
-    suspend fun searchProduct(@Body searchRequest: SearchRequest):ProductResponse
+    suspend fun searchProduct(@Header("Authorization") token: String,
+                              @Body searchRequest: SearchRequest
+    ):ProductResponse
 
 }

@@ -18,16 +18,16 @@ import com.mosamir.e_commerce.home.domain.model.DataX
 import com.mosamir.e_commerce.home.domain.model.ProductResponse
 import com.mosamir.e_commerce.util.IResult
 import com.mosamir.e_commerce.util.NetworkState
+import com.mosamir.e_commerce.util.SessionManager
 import com.mosamir.e_commerce.util.SessionManager.hide
 import com.mosamir.e_commerce.util.SessionManager.show
-import com.mosamir.e_commerce.util.SessionManager.toast
 import com.mosamir.e_commerce.util.getData
 import com.mosamir.e_commerce.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class Shopping : Fragment() {
+class Searching : Fragment() {
 
     private var _binding: FragmentShoppingBinding? = null
     private val binding get() = _binding!!
@@ -57,7 +57,8 @@ class Shopping : Fragment() {
 
         binding.etSearchProducts.addTextChangedListener {
             val text = binding.etSearchProducts.text.toString()
-            homeViewModel.searchProducts(text)
+            val token = SessionManager.getToken(requireContext()).toString()
+            homeViewModel.searchProducts(token,text)
         }
 
         observeOnSearch()

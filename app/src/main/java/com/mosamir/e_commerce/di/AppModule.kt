@@ -7,12 +7,15 @@ import com.mosamir.e_commerce.login.data.data_source.remote.LoginApiService
 import com.mosamir.e_commerce.profile.data.data_source.remote.ProfileApiService
 import com.mosamir.e_commerce.register.data.data_source.remote.RegisterApiService
 import com.mosamir.e_commerce.util.Constants
+import com.mosamir.e_commerce.util.SessionManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
@@ -25,7 +28,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(): Retrofit {
+    fun provideRetrofit(context: Context): Retrofit {
         val client = OkHttpClient.Builder()
             .connectTimeout(50, TimeUnit.SECONDS)
             .writeTimeout(50, TimeUnit.SECONDS)
@@ -37,6 +40,12 @@ object AppModule {
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideContext(@ApplicationContext context: Context): Context {
+        return context
     }
 
     @Provides

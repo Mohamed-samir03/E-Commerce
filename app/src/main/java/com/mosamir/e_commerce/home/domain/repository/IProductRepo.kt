@@ -8,6 +8,6 @@ interface IProductRepo {
 
     suspend fun getProducts(token: String): IResult<ProductResponse>
 
-    suspend fun searchProduct(searchRequest: SearchRequest): IResult<ProductResponse>
+    suspend fun searchProduct(token: String,searchRequest: SearchRequest): IResult<ProductResponse>
 
 }
