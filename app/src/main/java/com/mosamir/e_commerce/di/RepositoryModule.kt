@@ -1,9 +1,9 @@
 package com.mosamir.e_commerce.di
 
 import android.content.Context
-import com.mosamir.e_commerce.home.data.data_source.remote.IProductDataSource
-import com.mosamir.e_commerce.home.data.repository.ProductRepo
-import com.mosamir.e_commerce.home.domain.repository.IProductRepo
+import com.mosamir.e_commerce.shopping.data.data_source.remote.IProductDataSource
+import com.mosamir.e_commerce.shopping.data.repository.ProductRepo
+import com.mosamir.e_commerce.shopping.domain.repository.IProductRepo
 import com.mosamir.e_commerce.login.data.data_source.remote.ILoginDataSource
 import com.mosamir.e_commerce.login.data.repository.LoginRepo
 import com.mosamir.e_commerce.login.domain.repository.ILoginRepo

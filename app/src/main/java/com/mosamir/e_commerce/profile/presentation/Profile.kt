@@ -12,12 +12,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import com.mosamir.e_commerce.util.AuthActivity
 import com.mosamir.e_commerce.databinding.FragmentProfileBinding
-import com.mosamir.e_commerce.home.domain.model.DataX
-import com.mosamir.e_commerce.home.domain.model.ProductResponse
-import com.mosamir.e_commerce.home.presentation.ProductAdapter
 import com.mosamir.e_commerce.profile.domain.model.ProfileResponse
 import com.mosamir.e_commerce.profile.domain.model.UpdateProfileRequest
 import com.mosamir.e_commerce.util.Constants

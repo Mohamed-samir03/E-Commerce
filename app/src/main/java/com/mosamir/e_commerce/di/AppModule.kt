@@ -1,21 +1,17 @@
 package com.mosamir.e_commerce.di
 
-import android.app.Application
 import android.content.Context
-import com.mosamir.e_commerce.home.data.data_source.remote.ProductsApiService
+import com.mosamir.e_commerce.shopping.data.data_source.remote.ProductsApiService
 import com.mosamir.e_commerce.login.data.data_source.remote.LoginApiService
 import com.mosamir.e_commerce.profile.data.data_source.remote.ProfileApiService
 import com.mosamir.e_commerce.register.data.data_source.remote.RegisterApiService
 import com.mosamir.e_commerce.util.Constants
-import com.mosamir.e_commerce.util.SessionManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit

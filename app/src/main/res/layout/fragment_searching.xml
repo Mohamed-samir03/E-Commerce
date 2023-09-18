@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".shopping.presentation.Home">
+    tools:context=".shopping.presentation.Searching">
 
     <TextView
-        android:id="@+id/tv_home"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home"
+        android:text="Search for products"
         android:textColor="@color/title"
         android:textSize="@dimen/_20ssp"
         android:textStyle="bold"
@@ -20,37 +20,48 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.denzcoskun.imageslider.ImageSlider
-        android:id="@+id/image_slider"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textField_search"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_180sdp"
-        android:layout_marginTop="@dimen/_6sdp"
-        app:iss_auto_cycle="true"
-        app:iss_delay="1000"
-        app:iss_period="1000"
-        app:iss_text_align="CENTER"
+        android:layout_height="wrap_content"
+        android:hint="Search"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_home" />
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_searchProducts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_18ssp"
+            android:textColor="@color/title"
+            android:textColorHint="@color/hint"
+            android:backgroundTint="@color/primary"
+            android:drawableStart="@drawable/search"
+            android:drawablePadding="@dimen/_6sdp"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_home_product"
+        android:id="@+id/rv_searchProducts"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_16sdp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_slider"
-        tools:listitem="@layout/item_product" />
+        app:layout_constraintTop_toBottomOf="@+id/textField_search" />
 
     <ProgressBar
-        android:id="@+id/home_progressBar"
+        android:id="@+id/search_progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/rv_home_product"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_slider" />
-
+        app:layout_constraintTop_toBottomOf="@+id/textField_search" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
