@@ -3,6 +3,7 @@ package com.mosamir.e_commerce.shopping.data.repository
 import com.mosamir.e_commerce.shopping.data.data_source.remote.IProductDataSource
 import com.mosamir.e_commerce.shopping.domain.model.ProductResponse
 import com.mosamir.e_commerce.shopping.domain.model.SearchRequest
+import com.mosamir.e_commerce.shopping.domain.model.adddelete.AddDeleteFavouriteResponse
 import com.mosamir.e_commerce.shopping.domain.model.favourite.FavouriteResponse
 import com.mosamir.e_commerce.shopping.domain.repository.IProductRepo
 import com.mosamir.e_commerce.util.IResult
@@ -48,6 +49,22 @@ class ProductRepo @Inject constructor(
             }
         }else{
             return favouritesData
+        }
+    }
+
+    override suspend fun addDeleteFavourite(
+        token: String,
+        productId: Int
+    ): IResult<AddDeleteFavouriteResponse> {
+        val data = iProductDataSource.addDeleteFavourite(token,productId)
+        if (data is IResult.Success){
+            if (data.data.status){
+                return data
+            }else{
+                return IResult.onFail(data.data.message.toString())
+            }
+        }else{
+            return data
         }
     }
 

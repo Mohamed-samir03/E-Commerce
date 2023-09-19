@@ -3,6 +3,7 @@ package com.mosamir.e_commerce.shopping.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mosamir.e_commerce.shopping.domain.model.SearchRequest
+import com.mosamir.e_commerce.shopping.domain.use_case.IAddDeleteFavouritesUseCase
 import com.mosamir.e_commerce.shopping.domain.use_case.IGetFavouritesUseCase
 import com.mosamir.e_commerce.shopping.domain.use_case.IGetProductsUseCase
 import com.mosamir.e_commerce.shopping.domain.use_case.ISearchUseCase
@@ -18,7 +19,8 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val iGetProductsUseCase: IGetProductsUseCase,
     private val iSearchUseCase: ISearchUseCase,
-    private val iGetFavouritesUseCase: IGetFavouritesUseCase
+    private val iGetFavouritesUseCase: IGetFavouritesUseCase,
+    private val iAddDeleteFavouritesUseCase: IAddDeleteFavouritesUseCase
 ): ViewModel() {
 
     private val _getProductResult: MutableStateFlow<NetworkState?> = MutableStateFlow(null)
@@ -29,6 +31,9 @@ class HomeViewModel @Inject constructor(
 
     private val _getFavouritesResult: MutableStateFlow<NetworkState?> = MutableStateFlow(null)
     val getFavouritesResult: StateFlow<NetworkState?> =_getFavouritesResult
+
+    private val _addDeleteFavouriteResult: MutableStateFlow<NetworkState?> = MutableStateFlow(null)
+    val addDeleteFavouriteResult: StateFlow<NetworkState?> =_addDeleteFavouriteResult
 
     fun getProducts(token:String) {
         _getProductResult.value = NetworkState.LOADING
@@ -78,6 +83,23 @@ class HomeViewModel @Inject constructor(
             }catch (ex:Exception){
                 ex.printStackTrace()
                 _getFavouritesResult.value = NetworkState.getErrorMessage(ex)
+            }
+        }
+    }
+
+    fun addDeleteFavourite(token:String,productId:Int) {
+        _addDeleteFavouriteResult.value = NetworkState.LOADING
+        viewModelScope.launch {
+            try {
+                val result = iAddDeleteFavouritesUseCase.addDeleteFavourite(token,productId)
+                if (result.isSuccessful()){
+                    _addDeleteFavouriteResult.value = NetworkState.getLoaded(result)
+                }else{
+                    _addDeleteFavouriteResult.value = NetworkState.getErrorMessage(result.getError().toString())
+                }
+            }catch (ex:Exception){
+                ex.printStackTrace()
+                _addDeleteFavouriteResult.value = NetworkState.getErrorMessage(ex)
             }
         }
     }

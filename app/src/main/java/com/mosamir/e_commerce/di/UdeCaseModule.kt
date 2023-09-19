@@ -18,6 +18,8 @@ import com.mosamir.e_commerce.profile.domain.use_case.UpdateProfileUseCase
 import com.mosamir.e_commerce.register.domain.repository.IRegisterRepo
 import com.mosamir.e_commerce.register.domain.use_case.IRegisterUseCase
 import com.mosamir.e_commerce.register.domain.use_case.RegisterUseCase
+import com.mosamir.e_commerce.shopping.domain.use_case.AddDeleteFavouritesUseCase
+import com.mosamir.e_commerce.shopping.domain.use_case.IAddDeleteFavouritesUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -48,5 +50,8 @@ object UdeCaseModule {
 
     @Provides
     fun provideGetFavouritesUseCase(iProductRepo: IProductRepo):IGetFavouritesUseCase = GetFavouritesUseCase(iProductRepo)
+
+    @Provides
+    fun provideAddDeleteFavouritesUseCase(iProductRepo: IProductRepo):IAddDeleteFavouritesUseCase = AddDeleteFavouritesUseCase(iProductRepo)
 
 }

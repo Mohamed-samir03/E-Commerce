@@ -16,6 +16,7 @@ import com.denzcoskun.imageslider.models.SlideModel
 import com.mosamir.e_commerce.databinding.FragmentHomeBinding
 import com.mosamir.e_commerce.shopping.domain.model.DataX
 import com.mosamir.e_commerce.shopping.domain.model.ProductResponse
+import com.mosamir.e_commerce.shopping.domain.model.adddelete.AddDeleteFavouriteResponse
 import com.mosamir.e_commerce.util.IResult
 import com.mosamir.e_commerce.util.NetworkState
 import com.mosamir.e_commerce.util.SessionManager
@@ -27,13 +28,16 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class Home : Fragment() {
+class Home : Fragment(),ProductAdapter.OnFavoriteClickListener {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var mNavController: NavController
     private val homeViewModel by viewModels<HomeViewModel>()
     lateinit var data:ArrayList<DataX>
+    private var token = ""
+    lateinit var productAdapter:ProductAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +57,8 @@ class Home : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        token = SessionManager.getToken(requireContext()).toString()
+
         val imageList = ArrayList<SlideModel>()
         imageList.add(SlideModel("https://bit.ly/44tFkVr"))
         imageList.add(SlideModel("https://bit.ly/3qM0v7p"))
@@ -63,7 +69,7 @@ class Home : Fragment() {
         homeViewModel.getProducts(token)
 
         observeOnGetProducts()
-
+        observeOnAddDeleteProducts()
     }
 
     private fun observeOnGetProducts(){
@@ -74,12 +80,40 @@ class Home : Fragment() {
                         NetworkState.Status.SUCCESS -> {
                            val result = networkState.data as IResult<ProductResponse>
                             data = result.getData()?.data?.data as ArrayList<DataX>
-                            val productAdapter = ProductAdapter(requireContext(), data)
+                            productAdapter= ProductAdapter(requireContext(), data)
                             binding.rvHomeProduct.apply {
                                 adapter = productAdapter
                                 layoutManager = GridLayoutManager(requireContext(), 2)
                                 hasFixedSize()
                             }
+                            productAdapter.setOnFavoriteClickListener(this@Home)
+                            binding.homeProgressBar.hide()
+                        }
+
+                        NetworkState.Status.FAILED -> {
+                            showToast(networkState.msg.toString())
+                            binding.homeProgressBar.hide()
+                        }
+
+                        NetworkState.Status.RUNNING-> {
+                            binding.homeProgressBar.show()
+                        }
+
+                        else -> {}
+                    }
+                }
+            }
+        }
+    }
+
+    private fun observeOnAddDeleteProducts(){
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                homeViewModel.addDeleteFavouriteResult.collect {networkState->
+                    when (networkState?.status) {
+                        NetworkState.Status.SUCCESS -> {
+                            val result = networkState.data as IResult<AddDeleteFavouriteResponse>
+
                             binding.homeProgressBar.hide()
                         }
 
@@ -102,6 +136,11 @@ class Home : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onFavoriteClick(product: DataX, position: Int) {
+        homeViewModel.addDeleteFavourite(token,product.id)
+//        productAdapter.notifyItemChanged(position)
     }
 
 }

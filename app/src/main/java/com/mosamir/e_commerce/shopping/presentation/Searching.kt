@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.mosamir.e_commerce.databinding.FragmentSearchingBinding
 import com.mosamir.e_commerce.shopping.domain.model.DataX
 import com.mosamir.e_commerce.shopping.domain.model.ProductResponse
+import com.mosamir.e_commerce.shopping.domain.model.adddelete.AddDeleteFavouriteResponse
 import com.mosamir.e_commerce.util.IResult
 import com.mosamir.e_commerce.util.NetworkState
 import com.mosamir.e_commerce.util.SessionManager
@@ -27,13 +28,14 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class Searching : Fragment() {
+class Searching : Fragment(),ProductAdapter.OnFavoriteClickListener {
 
     private var _binding: FragmentSearchingBinding? = null
     private val binding get() = _binding!!
     private lateinit var mNavController: NavController
     private val homeViewModel by viewModels<HomeViewModel>()
     lateinit var data:ArrayList<DataX>
+    private var token = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +57,8 @@ class Searching : Fragment() {
 
         binding.etSearchProducts.requestFocus()
 
+        token = SessionManager.getToken(requireContext()).toString()
+
         binding.etSearchProducts.addTextChangedListener {
             val text = binding.etSearchProducts.text.toString()
             val token = SessionManager.getToken(requireContext()).toString()
@@ -62,7 +66,7 @@ class Searching : Fragment() {
         }
 
         observeOnSearch()
-
+        observeOnAddDeleteProducts()
     }
 
     private fun observeOnSearch(){
@@ -79,6 +83,34 @@ class Searching : Fragment() {
                                 layoutManager = GridLayoutManager(requireContext(), 2)
                                 hasFixedSize()
                             }
+                            productAdapter.setOnFavoriteClickListener(this@Searching)
+                            binding.searchProgressBar.hide()
+                        }
+
+                        NetworkState.Status.FAILED -> {
+                            showToast(networkState.msg.toString())
+                            binding.searchProgressBar.hide()
+                        }
+
+                        NetworkState.Status.RUNNING-> {
+                            binding.searchProgressBar.show()
+                        }
+
+                        else -> {}
+                    }
+                }
+            }
+        }
+    }
+
+    private fun observeOnAddDeleteProducts(){
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                homeViewModel.addDeleteFavouriteResult.collect {networkState->
+                    when (networkState?.status) {
+                        NetworkState.Status.SUCCESS -> {
+                            val result = networkState.data as IResult<AddDeleteFavouriteResponse>
+
                             binding.searchProgressBar.hide()
                         }
 
@@ -102,6 +134,10 @@ class Searching : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onFavoriteClick(product: DataX, position: Int) {
+        homeViewModel.addDeleteFavourite(token,product.id)
     }
 
 }
