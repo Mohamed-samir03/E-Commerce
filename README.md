@@ -2,6 +2,8 @@
 
 Clean Architecture E-Commerce App
 
+[API Collection](https://www.postman.com/collections/94db931dc503afd508a5)
+
 ## Android Technologies
 - Kotlin programming language
 - Clean Architecture
@@ -13,6 +15,7 @@ Clean Architecture E-Commerce App
 - UseCases
 - Android Jetpack (View Binding, Navigation Component)
 - Shared preferences
+- Material design
 - Dimens and font dimens
 - BottomNavigationView
 - Recyclerview and Adapter
