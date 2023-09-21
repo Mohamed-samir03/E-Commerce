@@ -1,6 +1,6 @@
 # E-Commerce
 
-Clean Architecture E-Commerce App
+Clean Architecture E-Commerce Native Android App. You can register in the application by entering the required information, then entering the application. Registration is done using the API. The application displays on the first page all the products from API, then you can navigate using BottomNavigationView to the other page, such as the searching page, to search for any product you want. And your favorites page to display the products that you have favorited. And a page to view your profile and edit your data.
 
 [API Collection](https://www.postman.com/collections/94db931dc503afd508a5)
 
