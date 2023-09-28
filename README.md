@@ -1,16 +1,17 @@
 # E-Commerce
 
-Clean Architecture E-Commerce Native Android App. You can register in the application by entering the required information, then entering the application. Registration is done using the API. The application displays on the first page all the products from API, then you can navigate using BottomNavigationView to the other page, such as the searching page, to search for any product you want. And your favorites page to display the products that you have favorited. And a page to view your profile and edit your data.
+Clean Architecture E-Commerce Native Android App. You can register in the application by entering the required information, then entering the application. Registration is done using the API. The application displays on the first page all the products from API, then you can navigate using BottomNavigationView to the other page, such as the searching page, to search for any product you want. And your favorites page to display the products that you have favorited. And a page to view your profile and edit your data. ( can send FCM Notification )
 
 [API Collection](https://www.postman.com/collections/94db931dc503afd508a5)
 
-## Android Technologies
+## Android Tools
 - Kotlin programming language
 - Clean Architecture
 - Architecture Pattern (MVVM)
 - Dependency injection (Dagger-Hilt)
 - Retrofit and RESTAPI
 - Kotlin Coroutines and Flow
+- FCM Notification
 - NetworkState and UIState
 - UseCases
 - Android Jetpack (View Binding, Navigation Component)
@@ -36,4 +37,5 @@ Clean Architecture E-Commerce Native Android App. You can register in the applic
         <img src= "https://github.com/Mohamed-samir03/E-Commerce/assets/81251707/7ae2249a-c976-4b95-abb4-12210cc399f4" height="400" width="200">
         <img src= "https://github.com/Mohamed-samir03/E-Commerce/assets/81251707/c92ffab7-8603-4a24-97f1-0547bd6412b8" height="400" width="200">
         <img src= "https://github.com/Mohamed-samir03/E-Commerce/assets/81251707/6ea3e6ea-4368-4bf1-a589-e6b7677e15d9" height="400" width="200">
+        <img src= "https://github.com/Mohamed-samir03/E-Commerce/assets/81251707/e8187f90-8957-4437-8f40-fff89f00f513" height="400" width="200">
 </div>
