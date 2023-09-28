@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "733346061311",
+    "project_id": "e-commerce-306ae",
+    "storage_bucket": "e-commerce-306ae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:733346061311:android:b2e8d3f24242244abde5ca",
+        "android_client_info": {
+          "package_name": "com.mosamir.e_commerce"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAA4uSshjsfjfu3UQfsBEBSPQPKzeDkzus"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
