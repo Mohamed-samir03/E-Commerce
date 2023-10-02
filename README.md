@@ -22,7 +22,7 @@ Clean Architecture E-Commerce Native Android App. You can register in the applic
 - Recyclerview and Adapter
 - ImageSlideshow
 - Lottiefiles animation
-- Image loading components (Glide)
+- Image loading components (Glide).
 
 <div align=center>
         <img src= "https://github.com/Mohamed-samir03/E-Commerce/assets/81251707/35e5537a-ca98-4d39-b169-c8ba67faef31" height="400" width="200">
