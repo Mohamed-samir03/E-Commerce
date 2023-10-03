@@ -4,7 +4,10 @@ Clean Architecture E-Commerce Native Android App. You can register in the applic
 
 [API Collection](https://www.postman.com/collections/94db931dc503afd508a5)
 
-## Android Tools
+### Using MVVM with Clean Architecture
+![clean with mvvm](https://github.com/Mohamed-samir03/E-Commerce/assets/81251707/fcc0d080-f0f8-4df1-909b-e139c595071e)
+
+### Android Tools
 - Kotlin programming language
 - Clean Architecture
 - Architecture Pattern (MVVM)
